@@ -1,0 +1,1 @@
+gcc -o test *.c ../my_funcs/my_funcs.c -L/usr/lib64 -lmlx -L/usr/lib64/X11 -lXext -lX11

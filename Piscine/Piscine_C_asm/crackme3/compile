@@ -1,0 +1,2 @@
+#!/bin/bash
+nasm -f elf keygenme1.asm -o keygenme1.o;gcc -m32 ./keygenme1.o -o keygenme1;rm -f ./keygenme1.o
