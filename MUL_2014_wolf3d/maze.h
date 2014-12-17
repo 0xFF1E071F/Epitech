@@ -5,12 +5,14 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec  8 15:30:28 2014 Erwan Dupard
-** Last update Tue Dec  9 12:34:49 2014 Erwan Dupard
+** Last update Wed Dec 17 01:40:56 2014 Erwan Dupard
 */
 
 #ifndef MAZE_H_
 # define MAZE_H_
 
+# define MSG_NO_PLAYER ("Maybe no player in the maps ??")
+# define MSG_NO_PLAYER2 (":( put a '2' in the map\n")
 #include "./my_vectors.h"
 
 typedef struct	s_list
@@ -21,20 +23,16 @@ typedef struct	s_list
 
 typedef struct	s_maze
 {
-  int		x;
-  int		y;
+  int		fd;
+  t_vect	size;
   int		len;
   t_list	*maze;
-  int		**map;
+  char		**map;
 }		t_maze;
 
-void		init_list(t_list **list);
-void		init_vect(t_vect *p);
-void		add_value(t_list **list, int value);
-void		my_show_list(t_maze *maze);
-t_maze		*get_maze_file(int fd);
-
-int             **list_to_int_tab(t_maze *maze);
-void		my_show_int_tab(t_maze *maze);
+char		**get_maze_file(char *file, t_maze *maze);
+void		show_int_tab(int **tab, t_vect *size);
+int		is_valid_maze(t_maze *maze);
+void		init_vect(t_vect *c);
 
 #endif	/* !MAZE_H_ */

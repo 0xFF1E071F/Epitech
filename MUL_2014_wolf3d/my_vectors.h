@@ -5,14 +5,14 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Tue Nov  4 13:44:15 2014 Erwan Dupard
-** Last update Tue Dec  9 13:50:41 2014 Erwan Dupard
+** Last update Sat Dec 13 16:05:09 2014 Erwan Dupard
 */
 
 #ifndef _MY_VECTORS_H_
 # define _MY_VECTORS_H_
 
 # define ABS(c) (c >= 0 ? c : -c)
-
+# define IS_NUMBER(c) (c >= '0' && c <= '9')
 typedef struct	s_tabvect
 {
   int		x;

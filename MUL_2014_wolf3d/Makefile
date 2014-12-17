@@ -5,7 +5,7 @@
 ## Login   <dupard_e@epitech.net>
 ## 
 ## Started on  Mon Dec  8 13:33:20 2014 Erwan Dupard
-## Last update Tue Dec  9 12:30:40 2014 Erwan Dupard
+## Last update Tue Dec 16 16:16:36 2014 Erwan Dupard
 ##
 
 CC	= gcc
@@ -18,9 +18,12 @@ CFLAGS	+= -ansi -pedantic
 LDFLAGS += -I./include -L./lib -lmy
 LDFLAGS += -L/usr/lib64 -lmlx -L/usr/lib64/X11 -lXext -lX11
 
-SRCS	= main.c      	\
-	  maze.c	\
-	  list.c	\
+SRCS	= main.c      		\
+	  maze.c		\
+	  event.c		\
+	  images.c		\
+	  player.c		\
+	  base.c		\
 
 OBJS	= $(SRCS:.c=.o)
 
