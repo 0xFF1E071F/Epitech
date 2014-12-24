@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec  8 13:34:15 2014 Erwan Dupard
-** Last update Wed Dec 17 01:42:59 2014 Erwan Dupard
+** Last update Wed Dec 24 12:44:02 2014 Erwan Dupard
 */
 
 #include <mlx.h>
@@ -14,12 +14,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "./player.h"
-#include "./maze.h"
-#include "./my_vectors.h"
 #include "./include/my.h"
 #include "./ressources.h"
-#include "./images.h"
 
 void		opt(char *avo)
 {
@@ -30,8 +26,8 @@ void		opt(char *avo)
 
 void		get_mlx_info(t_infos *s)
 {
-  s->win_x = 1000;
-  s->win_y = 1000;
+  s->win_x = WIDTH;
+  s->win_y = HEIGHT;
   s->title = my_strdup("WolfMe");
   my_printf("[*] Getting MLX ptr..\n");
   if ((s->mlx_ptr = mlx_init()) == NULL)
@@ -66,23 +62,15 @@ int		main(int ac, char **av)
     return (1);
   if (ac < 2)
     opt(av[0]);
-  if ((maze->fd = open(av[1], O_RDONLY)) == -1)
-    {
-      my_fprintf(2, "[-] Failed to open file '%s'..\n", av[1]);
-      return (1);
-    }
-  maze->map = get_maze_file(av[1], maze);
-  if ((cPlayer = get_player_infos(maze)) == NULL)
-    {
-      my_fprintf(2, MSG_NO_PLAYER);
-      my_fprintf(2, MSG_NO_PLAYER2);
-      return (1);
-    }
+  if ((catch_error(&maze, av[1], &cPlayer)) == 1)
+    return (1);
   get_mlx_info(&s);
   get_sky_and_floor(&s);
+  get_wallx(&s, cPlayer, maze);
   my_show_image(&s);
-
-  mlx_key_hook(s.win_ptr, key_pressed, NULL);
+  s.p = *cPlayer;
+  s.m = *maze;
+  mlx_key_hook(s.win_ptr, key_pressed, &s);
   mlx_loop(s.mlx_ptr);
   return (0);
 }

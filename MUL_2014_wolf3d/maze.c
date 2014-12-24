@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec  8 15:32:29 2014 Erwan Dupard
-** Last update Wed Dec 17 01:47:16 2014 Erwan Dupard
+** Last update Fri Dec 19 16:03:44 2014 Erwan Dupard
 */
 
 #include <unistd.h>
@@ -13,8 +13,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include "./my_vectors.h"
-#include "./maze.h"
+#include "./ressources.h"
 #include "./include/my.h"
 
 int		get_y(char *file, int *x)

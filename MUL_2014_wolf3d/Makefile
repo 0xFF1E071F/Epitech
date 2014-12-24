@@ -5,7 +5,7 @@
 ## Login   <dupard_e@epitech.net>
 ## 
 ## Started on  Mon Dec  8 13:33:20 2014 Erwan Dupard
-## Last update Tue Dec 16 16:16:36 2014 Erwan Dupard
+## Last update Wed Dec 17 02:05:29 2014 Erwan Dupard
 ##
 
 CC	= gcc
@@ -15,6 +15,7 @@ RM 	= rm -f
 CFLAGS 	+= -Werror -Wall -Wextra
 CFLAGS	+= -ansi -pedantic
 
+LDFLAGS += -lm
 LDFLAGS += -I./include -L./lib -lmy
 LDFLAGS += -L/usr/lib64 -lmlx -L/usr/lib64/X11 -lXext -lX11
 

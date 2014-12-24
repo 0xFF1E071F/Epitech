@@ -5,9 +5,10 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec 15 11:38:38 2014 Erwan Dupard
-** Last update Wed Dec 17 01:19:35 2014 Erwan Dupard
+** Last update Thu Dec 18 15:53:15 2014 Erwan Dupard
 */
 
+#include <stdlib.h>
 #include "./ressources.h"
 #include "./include/my.h"
 
@@ -37,6 +38,8 @@ int		check_carre(t_vect pos, char **map, int c, int y)
 
   cur.x = pos.x;
   cur.y = pos.y;
+  if (map == NULL)
+    return (0);
   while (cur.y < pos.y + c)
     {
       while (cur.x < pos.x + c)
@@ -47,7 +50,7 @@ int		check_carre(t_vect pos, char **map, int c, int y)
 	}
       cur.x = pos.x;
       cur.y++;
-      if (cur.y >= y)
+      if (cur.y > y)
 	return (0);
     }
   return (1);

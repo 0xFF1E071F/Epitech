@@ -5,7 +5,7 @@
 ## Login   <dupard_e@epitech.net>
 ## 
 ## Started on  Mon Dec 15 10:13:55 2014 Erwan Dupard
-## Last update Mon Dec 15 13:05:16 2014 Erwan Dupard
+## Last update Tue Dec 23 10:46:26 2014 Erwan Dupard
 ##
 
 CC	= gcc
@@ -30,8 +30,6 @@ OBJS	= $(SRCS:.c=.o)
 
 all: library $(NAME)
 
-debug:
-	$(CC) -g3 -o $(NAME) $(SRCS) $(CFLAGS) $(LDFLAGS) 
 library: 
 	make -C lib/my
 
