@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Tue Dec 16 10:59:42 2014 Erwan Dupard
-** Last update Wed Dec 24 13:41:26 2014 Erwan Dupard
+** Last update Sun Dec 28 18:07:11 2014 Erwan Dupard
 */
 
 #ifndef LIST_H_
