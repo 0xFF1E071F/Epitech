@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec 15 10:12:10 2014 Erwan Dupard
-** Last update Wed Dec 24 13:59:49 2014 Erwan Dupard
+** Last update Wed Jan  7 23:06:40 2015 Erwan Dupard
 */
 
 #include <sys/types.h>
@@ -65,6 +65,12 @@ int		catch_error(char **term, char *bp,
   return (0);
 }
 
+void		init_main(char **bp, t_list **list)
+{
+  *list = NULL;
+  *bp = NULL;
+}
+
 int			main(int argc, char **argv)
 {
   t_list		*list;
@@ -74,15 +80,15 @@ int			main(int argc, char **argv)
   struct termios	t;
   struct termios	save;
 
-  bp = NULL;
-  list = NULL;
+  init_main(&bp, &list);
   tty = get_tty_fd();
   if (argc < 2)
     {
       my_printf("[*] Usage : %s [arg:]\n", argv[0]);
       return (0);
     }
-  my_params_to_list(&list, argc, argv);
+  if (my_params_to_list(&list, argc, argv))
+    return (1);
   if (catch_error(&term, bp, &t, &save))
     return (1);
   raw_mode(&t);

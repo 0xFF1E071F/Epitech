@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Tue Dec 16 11:13:48 2014 Erwan Dupard
-** Last update Wed Jan  7 18:53:25 2015 Erwan Dupard
+** Last update Wed Jan  7 23:22:36 2015 Erwan Dupard
 */
 
 #include <stdlib.h>
@@ -13,15 +13,17 @@
 #include "./list.h"
 #include "./term.h"
 
-void		get_e(char *name, t_list **list, t_list *e)
+int		get_e(char *name, t_list **list, t_list *e)
 {
   e->nxt = e;
   e->prv = e;
-  e->name = my_strdup(name);
+  if ((e->name = my_strdup(name)) == NULL)
+    return (1);
   e->selected = 0;
   e->on = 1;
   *list = e;
   (*list)->prv = (*list)->nxt;
+  return (0);
 }
 
 int		add_elem_to_list(char *name, t_list **list)
@@ -32,7 +34,8 @@ int		add_elem_to_list(char *name, t_list **list)
     return (1);
   if (*list == NULL)
     {
-      get_e(name, list, e);
+      if (get_e(name, list, e))
+	return (1);
       return (0);
     }
   tmp = *list;
@@ -44,21 +47,24 @@ int		add_elem_to_list(char *name, t_list **list)
   e->nxt = *list;
   e->on = 0;
   e->selected = 0;
-  e->name = my_strdup(name);
+  if ((e->name = my_strdup(name)) == NULL)
+    return (1);
   (*list)->prv = e;
   return (0);
 }
 
-void		my_params_to_list(t_list **list, int argc, char **argv)
+int		my_params_to_list(t_list **list, int argc, char **argv)
 {
   int		i;
 
   i = 1;
   while (i <= (argc - 1))
     {
-      add_elem_to_list(argv[i], list);
+      if ((add_elem_to_list(argv[i], list)))
+	return (1);
       i++;
     }
+  return (0);
 }
 
 void		my_show_list(t_list **list, int tty)
@@ -83,7 +89,6 @@ void		my_show_list(t_list **list, int tty)
 	my_fprintf(tty, "%s\n", tmp->name);
       tmp = tmp->nxt;
     }
-  my_printf("#END#\n");
 }
 
 void		print_result(t_list **list)

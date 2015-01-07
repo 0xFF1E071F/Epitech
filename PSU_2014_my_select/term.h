@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec 22 14:17:16 2014 Erwan Dupard
-** Last update Wed Dec 24 13:43:34 2014 Erwan Dupard
+** Last update Wed Jan  7 23:10:30 2015 Erwan Dupard
 */
 
 #ifndef TERM_H_
@@ -15,6 +15,13 @@
 # include <curses.h>
 # include <term.h>
 
+typedef struct	s_vect
+{
+  int		x;
+  int		y;
+}		t_vect;
+
+t_vect		get_termsize();
 int		raw_mode(struct termios *t);
 void		my_underline(char *str, int tty);
 void		my_end_all(int tty);
