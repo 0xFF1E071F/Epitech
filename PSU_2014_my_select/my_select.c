@@ -5,7 +5,7 @@
 ** Login   <dupard_e@epitech.net>
 ** 
 ** Started on  Mon Dec 22 14:58:22 2014 Erwan Dupard
-** Last update Wed Dec 24 14:01:26 2014 Erwan Dupard
+** Last update Wed Jan  7 18:52:01 2015 Erwan Dupard
 */
 
 #include <unistd.h>
@@ -70,6 +70,23 @@ void		my_space(t_list **list)
     }
 }
 
+void		check_buffer(char buffer[3], t_list **list)
+{
+  if (buffer[0] == 0x20)
+    my_space(list);
+  if (buffer[0] == 0x1b && buffer[1] == 0x5b)
+    {
+      if (buffer[2] == 0x41)
+	uparrow(list);
+      if (buffer[2] == 0x42)
+	downarrow(list);
+      if (buffer[2] == 0x43)
+	rightarrow(list);
+      if (buffer[2] == 0x44)
+	leftarrow(list);
+    }
+}
+
 void		my_select(t_list **list, int tty)
 {
   char		buffer[3];
@@ -79,24 +96,16 @@ void		my_select(t_list **list, int tty)
   cm = tgetstr("cm", NULL);
   while (buffer[0] != 0x0A)
     {
+      my_fprintf(tty, "%s", tgoto(cm, 0, 0));
       my_show_list(list, tty);
       n = read(0, buffer, 3);
       buffer[n] = 0;
-      if (buffer[0] == 0x20)
-	my_space(list);
-      if (buffer[0] == 0x1b && buffer[1] == 0x5b)
+      if (buffer[0] == 0x7f)
 	{
-	  if (buffer[2] == 0x41)
-	    uparrow(list);
-	  if (buffer[2] == 0x42)
-	    downarrow(list);
-	  if (buffer[2] == 0x43)
-	    rightarrow(list);
-	  if (buffer[2] == 0x44)
-	    leftarrow(list);
+	  count_elem(list) > 1 ?  delete_elem_from_list(list) : 0;
+	  clean_screen(tty);
 	}
-      my_fprintf(tty, "%s", tgoto(cm, 0, 0));
+      check_buffer(buffer, list);
     }
-  clean_screen(tty);
   print_result(list);
 }

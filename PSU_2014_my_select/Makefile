@@ -5,7 +5,7 @@
 ## Login   <dupard_e@epitech.net>
 ## 
 ## Started on  Mon Dec 15 10:11:35 2014 Erwan Dupard
-## Last update Mon Dec 22 17:28:15 2014 Erwan Dupard
+## Last update Wed Jan  7 18:56:50 2015 Erwan Dupard
 ##
 
 CC	= gcc
@@ -21,6 +21,7 @@ RM	= rm -f
 
 SRCS	= main.c 	\
 	  list.c	\
+	  list2.c	\
 	  term.c	\
 	  term2.c	\
 	  my_select.c	\
@@ -28,12 +29,7 @@ SRCS	= main.c 	\
 
 OBJS	= $(SRCS:.c=.o)
 
-
-
 all: library $(NAME)
-
-debug:
-	$(CC) -g3 -o $(NAME) $(SRCS) $(CFLAGS) $(LDFLAGS)
 
 library: 
 	make -C lib/my
